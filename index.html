@@ -5,208 +5,212 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Basma Kaanane - Portfolio</title>
   <style>
+    /* -------- General Styles -------- */
     body {
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      background: #f9f9f9;
+      font-family: "Inter", Arial, sans-serif;
       margin: 0;
+      background: #fdfdfd;
       color: #333;
       line-height: 1.6;
+      scroll-behavior: smooth;
     }
-    header {
-      background: #111;
+    a { text-decoration: none; color: inherit; }
+    h1, h2, h3 { margin: 0; }
+    section { padding: 4rem 1rem; max-width: 1100px; margin: auto; }
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.4rem;
+      background: #00adb5;
       color: white;
-      padding: 2rem 1rem;
+      border-radius: 25px;
+      transition: 0.3s;
+    }
+    .btn:hover { background: #007d82; }
+
+    /* -------- Header / Hero -------- */
+    header {
+      background: linear-gradient(to right, #111, #222);
+      color: white;
       text-align: center;
+      padding: 6rem 1rem;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2.2rem;
-      letter-spacing: 1px;
+    header h1 { font-size: 3rem; }
+    header p { font-size: 1.2rem; opacity: 0.85; }
+    header .links a { margin: 0 0.7rem; color: #00adb5; font-weight: 500; }
+
+    /* -------- Story Section -------- */
+    .story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
     }
-    header p {
-      margin: 0.5rem 0 0;
-      font-size: 1rem;
-      opacity: 0.8;
+    .story img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
-    nav {
-      background: #222;
-      display: flex;
-      justify-content: center;
-      padding: 0.5rem;
+
+    /* -------- Skills -------- */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
     }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 1rem;
-      font-size: 0.9rem;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #00adb5;
-    }
-    section {
-      max-width: 900px;
-      margin: 2rem auto;
+    .skill-card {
+      background: #fff;
       padding: 1rem;
-      background: white;
-      border-radius: 8px;
+      border-radius: 10px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: 0.3s;
     }
-    section h2 {
-      border-left: 4px solid #00adb5;
-      padding-left: 0.5rem;
-      margin-bottom: 1rem;
-      color: #111;
+    .skill-card:hover { transform: translateY(-5px); }
+
+    /* -------- Experience Carousel -------- */
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1rem;
+      padding-bottom: 1rem;
     }
-    .experience, .project {
-      margin-bottom: 1rem;
+    .carousel::-webkit-scrollbar { display: none; }
+    .exp-card {
+      flex: 0 0 80%;
+      background: #fff;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      scroll-snap-align: start;
     }
-    .experience h3, .project h3 {
-      margin: 0;
-      font-size: 1.1rem;
-      color: #00adb5;
-      cursor: pointer;
+
+    /* -------- Projects -------- */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
     }
-    .experience-details, .project-details {
-      display: none;
-      margin-top: 0.5rem;
-      font-size: 0.9rem;
-      color: #444;
+    .project-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      transition: 0.3s;
     }
+    .project-card:hover { transform: translateY(-6px); }
+
+    /* -------- Contact -------- */
+    .contact {
+      text-align: center;
+      background: #f3f3f3;
+      padding: 3rem 1rem;
+      border-radius: 12px;
+    }
+
     footer {
       text-align: center;
       padding: 2rem 1rem;
-      font-size: 0.85rem;
-      color: #777;
-    }
-    .skills ul {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 0.5rem;
-      padding: 0;
-      list-style: none;
-    }
-    .skills li {
-      background: #f0f0f0;
-      padding: 0.4rem;
-      border-radius: 4px;
-      text-align: center;
       font-size: 0.9rem;
+      color: #666;
     }
   </style>
 </head>
 <body>
 
+<!-- HERO -->
 <header>
-  <h1>Basma Kaanane</h1>
-  <p>Email: <a href="mailto:bkaan006@uottawa.ca" style="color:#00adb5;">bkaan006@uottawa.ca</a> | Tel: 873-688-0417</p>
-  <p>
-    <a href="https://linkedin.com/in/basma-kaanane" style="color:#00adb5;">LinkedIn</a> | 
-    <a href="https://github.com/Basmakaa" style="color:#00adb5;">GitHub</a>
-  </p>
+  <h1>Hi, I’m Basma Kaanane 👋</h1>
+  <p>Software Engineer | AI & Full-Stack Developer | Builder of Warm, Human-Centered Tech</p>
+  <div class="links">
+    <a href="mailto:bkaan006@uottawa.ca">Email</a> |
+    <a href="https://linkedin.com/in/basma-kaanane">LinkedIn</a> |
+    <a href="https://github.com/Basmakaa">GitHub</a>
+  </div>
 </header>
 
-<nav>
-  <a href="#summary">Summary</a>
-  <a href="#skills">Skills</a>
-  <a href="#experience">Experience</a>
-  <a href="#education">Education</a>
-  <a href="#projects">Projects</a>
-</nav>
-
-<section id="summary">
-  <h2>Summary</h2>
-  <p>Software Engineer with +6 industry experiences across AI, full-stack development, and cloud infrastructure. Delivered production-grade tools that cut process times by 90%, launched 25+ web products, and improved conversion by 110%. Skilled in AI copilots, real-time systems, and enterprise automation. <strong>Diligence, Determination and Meticulousness</strong> are the watchword of my attitude.</p>
+<!-- STORY -->
+<section id="story">
+  <h2>Who Am I?</h2>
+  <div class="story">
+    <div>
+      <p>
+        I’m a curious creator who loves building tech that feels warm and meaningful.  
+        My journey started at the University of Ottawa, where I discovered my love for blending  
+        software engineering with human-centered design. Over the years, I’ve built tools  
+        that save people time, launch impactful products, and even improve health outcomes.  
+      </p>
+      <p>
+        My motto: <strong>Diligence, Determination, and Meticulousness</strong>.  
+        But above all, I believe technology should serve people — not the other way around.  
+      </p>
+      <a href="#contact" class="btn">Let’s Connect</a>
+    </div>
+    <img src="https://source.unsplash.com/500x400/?workspace,tech" alt="Basma working">
+  </div>
 </section>
 
-<section id="skills" class="skills">
+<!-- SKILLS -->
+<section id="skills">
   <h2>Skills</h2>
-  <ul>
-    <li>Python</li><li>Java</li><li>JavaScript</li><li>Django</li>
-    <li>Spring Boot</li><li>React</li><li>SQL</li><li>TensorFlow</li>
-    <li>PyTorch</li><li>Azure</li><li>Terraform</li><li>Docker</li>
-    <li>GitHub Actions</li><li>Datadog</li><li>Kafka</li><li>Selenium</li>
-  </ul>
+  <div class="skills-grid">
+    <div class="skill-card">Python</div>
+    <div class="skill-card">JavaScript / React</div>
+    <div class="skill-card">Java / Spring Boot</div>
+    <div class="skill-card">Django</div>
+    <div class="skill-card">AI / GPT / TensorFlow</div>
+    <div class="skill-card">Azure & Terraform</div>
+    <div class="skill-card">Docker & GitHub Actions</div>
+    <div class="skill-card">SQL / Databases</div>
+  </div>
 </section>
 
+<!-- EXPERIENCE CAROUSEL -->
 <section id="experience">
   <h2>Experience</h2>
-  
-  <div class="experience">
-    <h3>EHN Canada – Web Developer (June 2024 – Current)</h3>
-    <div class="experience-details">
-      <ul>
-        <li>Developed a real-time AI Copilot analyzing sales calls using Azure & GPT (90% relevance).</li>
-        <li>Increased conversion rates by 110% through optimized landing pages.</li>
-        <li>Launched 10+ web products, aligning features with user feedback and stakeholder goals.</li>
-      </ul>
+  <div class="carousel">
+    <div class="exp-card">
+      <h3>EHN Canada – Web Developer</h3>
+      <p>Built a real-time AI Copilot for sales calls with GPT & Azure (cut handling time 25%).  
+         Increased conversion by 110% with high-performing landing pages.  
+         Launched 10+ products from idea to release.</p>
+    </div>
+    <div class="exp-card">
+      <h3>TD Bank – Developer</h3>
+      <p>Created a Django + React tool cutting access process time from 7 days → 1 minute.  
+         Streamlined security across 5+ departments, saving 40+ hrs/month.</p>
+    </div>
+    <div class="exp-card">
+      <h3>Ericsson – Automation Dev</h3>
+      <p>Developed automation app for partner tracking (Django + GPT).  
+         Improved extraction efficiency by 40% and got 9.8/10 client satisfaction.</p>
     </div>
   </div>
-
-  <div class="experience">
-    <h3>TD Bank - Data Analyst/Developer (May 2023)</h3>
-    <div class="experience-details">
-      <ul>
-        <li>Built internal tool with Django + React cutting process time from 7 days to 1 minute.</li>
-        <li>Streamlined workflows, saving 40+ hours/month and improving security audit scores.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="experience">
-    <h3>Ericsson - Automation Software Developer (2022 – 2023)</h3>
-    <div class="experience-details">
-      <ul>
-        <li>Developed automation web app with Django for content extraction.</li>
-        <li>Improved efficiency by 40% using TensorFlow and GPT.</li>
-        <li>Achieved 9.8/10 client satisfaction across 3 accounts.</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- You can keep adding more experiences the same way -->
 </section>
 
-<section id="education">
-  <h2>Education & Certifications</h2>
-  <p><strong>University of Ottawa</strong> – Bachelor in Software Engineering (CO-OP)</p>
-  <p>Languages: French (C2) | English (Fluent)</p>
-  <p>Microsoft Azure Certified | Microsoft AI Certified</p>
-  <p><strong>Awards:</strong> Women in STEM Excellence Award, 7 Merit Scholarships, Dean’s Honor List</p>
-</section>
-
+<!-- PROJECTS -->
 <section id="projects">
   <h2>Projects</h2>
-  <div class="project">
-    <h3>OptiLiftAI</h3>
-    <div class="project-details">
-      <p>A real-time posture correction system using pose estimation, LangChain AI, and Azure cloud to improve workout performance and reduce injuries.</p>
+  <div class="projects-grid">
+    <div class="project-card">
+      <h3>OptiLiftAI</h3>
+      <p>Real-time posture correction using pose estimation + LangChain AI.  
+         Built to reduce gym injuries and improve performance.</p>
     </div>
-  </div>
-  <div class="project">
-    <h3>Web Pages at Giatec Scientific</h3>
-    <div class="project-details">
-      <p>
-        <a href="https://www.giatecscientific.com/construction-revolution/">Construction Revolution</a><br>
-        <a href="https://www.giatecscientific.com/products/concrete-sensors/smartbox-electrical-resistivity/">Smartbox Electrical Resistivity</a>
-      </p>
+    <div class="project-card">
+      <h3>Giatec Landing Pages</h3>
+      <p>Designed 5+ high-converting landing pages that tripled monthly users.  
+         Example: <a href="https://www.giatecscientific.com/construction-revolution/" target="_blank">See live</a>.</p>
+    </div>
+    <div class="project-card">
+      <h3>Simulation Games</h3>
+      <p>Developed web-based simulations for hospitals & universities, revolutionizing training methods.</p>
     </div>
   </div>
 </section>
 
-<footer>
-  © 2025 Basma Kaanane | Built with ❤️
-</footer>
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <h2>Let’s Build Something Together</h2>
+  <p>I’m always open to oppor
 
-<script>
-  // Toggle expand/collapse
-  document.querySelectorAll('.experience h3, .project h3').forEach(item => {
-    item.addEventListener('click', () => {
-      const details = item.nextElementSibling;
-      details.style.display = details.style.display === 'block' ? 'none' : 'block';
-    });
-  });
-</script>
-
-</body>
-</html>
