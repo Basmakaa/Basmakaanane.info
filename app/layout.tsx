@@ -1,23 +1,47 @@
-import type { Metadata } from "next";
-import { Inter, Sora } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Fraunces, Outfit } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import Grain from "@/components/Grain";
+import Progress from "@/components/Progress";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { profile } from "@/lib/data";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const sora = Sora({ subsets: ["latin"], variable: "--font-display" });
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+  style: ["normal", "italic"],
+});
+
+const title = `${profile.name} — Engineer, founder, creative`;
+const description =
+  "Basma Kaanane is a software engineer and founder in Toronto. Engineer by training. Entrepreneur by curiosity. Creative by nature.";
 
 export const metadata: Metadata = {
-  title: `${profile.name} — Software Engineer & AI Developer`,
-  description:
-    "Basma Kaanane — Software Engineer, AI & Full-Stack Developer, and woman in tech building warm, human-centered technology.",
+  title: {
+    default: title,
+    template: `%s — ${profile.name}`,
+  },
+  description,
   metadataBase: new URL("https://basmakaanane.info"),
   openGraph: {
-    title: `${profile.name} — Software Engineer & AI Developer`,
-    description:
-      "Building warm, human-centered technology. AI, full-stack, and a whole lot of curiosity.",
+    title,
+    description,
     type: "website",
+    url: "https://basmakaanane.info",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#f4efe6",
 };
 
 export default function RootLayout({
@@ -26,9 +50,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${sora.variable}`}>
-      <body className="bg-ink-950 text-white antialiased selection:bg-accent/30 selection:text-white">
-        <SmoothScroll>{children}</SmoothScroll>
+    <html lang="en" className={`${outfit.variable} ${fraunces.variable}`}>
+      <body className="bg-paper font-sans text-ink antialiased">
+        <a
+          href="#content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"
+        >
+          Skip to content
+        </a>
+        <SmoothScroll>
+          <Grain />
+          <Progress />
+          <Navbar />
+          {children}
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );

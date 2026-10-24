@@ -9,39 +9,32 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        paper: {
+          DEFAULT: "#f4efe6",
+          deep: "#e7dfd2",
+        },
         ink: {
-          950: "#05060e",
-          900: "#0a0b1a",
-          800: "#111327",
+          DEFAULT: "#161311",
+          soft: "#3f3a34",
         },
-        violet: {
-          glow: "#8b5cf6",
+        muted: "#746c63",
+        clay: {
+          DEFAULT: "#c24d2c",
+          deep: "#9a3518",
         },
-        accent: {
-          DEFAULT: "#a78bfa",
-          cyan: "#22d3ee",
-          pink: "#f472b6",
-          gold: "#fbbf24",
-        },
+        moss: "#1c3d32",
+        night: "#12100e",
+        line: "rgba(22, 19, 17, 0.12)",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
-        display: ["var(--font-display)", "serif"],
+        display: ["var(--font-display)", "Georgia", "serif"],
       },
-      animation: {
-        "spin-slow": "spin 14s linear infinite",
-        float: "float 6s ease-in-out infinite",
-        shimmer: "shimmer 3s linear infinite",
+      maxWidth: {
+        page: "1440px",
       },
-      keyframes: {
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-16px)" },
-        },
-        shimmer: {
-          "0%": { backgroundPosition: "0% 50%" },
-          "100%": { backgroundPosition: "200% 50%" },
-        },
+      transitionTimingFunction: {
+        out: "cubic-bezier(0.22, 1, 0.36, 1)",
       },
     },
   },

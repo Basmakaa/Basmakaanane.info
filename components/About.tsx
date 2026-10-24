@@ -1,90 +1,69 @@
 "use client";
 
-import { motion } from "framer-motion";
-import SectionHeading from "./ui/SectionHeading";
-import { about, skills } from "@/lib/data";
+import { motion, useReducedMotion } from "framer-motion";
+import Index from "./ui/Index";
+import Reveal from "./ui/Reveal";
+import { about, path, skillGroups } from "@/lib/data";
 
 export default function About() {
+  const reduce = useReducedMotion();
+
   return (
-    <section id="about" className="relative mx-auto max-w-6xl px-6 py-28">
-      <SectionHeading
-        eyebrow="Who I Am"
-        title={about.headline}
-      />
+    <section id="about" className="mx-auto max-w-page px-5 py-28 md:px-10 md:py-36">
+      <Index n="02" label="About" />
 
-      <div className="grid gap-14 lg:grid-cols-[1.3fr_1fr]">
-        <div className="space-y-6">
-          {about.paragraphs.map((p, i) => (
-            <motion.p
-              key={i}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="text-lg leading-relaxed text-white/70"
-            >
-              {p}
-            </motion.p>
-          ))}
+      <Reveal>
+        <h2 className="max-w-3xl font-display text-[clamp(2.8rem,6vw,5.4rem)] font-light leading-[0.95] tracking-[-0.03em]">
+          {about.headline}
+        </h2>
+        <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink-soft">
+          {about.body}
+        </p>
+      </Reveal>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-wrap gap-3 pt-2"
+      <dl className="mt-16 grid gap-x-12 gap-y-10 sm:grid-cols-2">
+        {skillGroups.map((group) => (
+          <div
+            key={group.label}
+            className="border-t border-line pt-5 transition-colors hover:border-clay"
           >
-            {about.motto.map((m) => (
-              <span
-                key={m}
-                className="glass rounded-full px-4 py-2 text-sm font-medium text-accent"
-              >
-                {m}
-              </span>
-            ))}
-          </motion.div>
-        </div>
-
-        <div className="space-y-8">
-          {/* Stats */}
-          <div className="grid grid-cols-2 gap-4">
-            {about.stats.map((s, i) => (
-              <motion.div
-                key={s.label}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="glass rounded-2xl p-5"
-              >
-                <div className="text-gradient font-display text-3xl font-bold">
-                  {s.value}
-                </div>
-                <div className="mt-1 text-sm text-white/50">{s.label}</div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Skills */}
-          <div>
-            <h3 className="mb-3 text-sm font-semibold uppercase tracking-widest text-white/40">
-              Toolbox
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {skills.map((skill, i) => (
-                <motion.span
-                  key={skill}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.04 }}
-                  className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-1.5 text-sm text-white/70 transition-colors hover:border-accent/40 hover:text-white"
-                >
-                  {skill}
-                </motion.span>
+            <dt className="text-[11px] uppercase tracking-[0.22em] text-clay">
+              {group.label}
+            </dt>
+            <dd className="mt-4 flex flex-wrap gap-x-3 gap-y-2 text-sm leading-relaxed text-ink-soft">
+              {group.items.map((item) => (
+                <span key={item} className="after:ml-3 after:text-clay/80 after:content-['·'] last:after:content-none">
+                  {item}
+                </span>
               ))}
-            </div>
+            </dd>
           </div>
+        ))}
+      </dl>
+
+      <div className="relative mt-20 md:mt-28">
+        <motion.div
+          aria-hidden
+          initial={reduce ? false : { scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute left-0 right-0 top-[5px] hidden h-px origin-left bg-ink/15 md:block"
+        />
+        <div className="grid gap-10 md:grid-cols-4">
+          {path.map((step, i) => (
+            <Reveal key={step.place} delay={i * 0.08}>
+              <div className="relative">
+                <span className="mb-5 block h-2.5 w-2.5 rounded-full bg-clay ring-4 ring-paper" />
+                <h3 className="font-display text-3xl font-light tracking-tight">
+                  {step.place}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+                  {step.detail}
+                </p>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
